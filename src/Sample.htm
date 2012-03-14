@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>jQuery UI DMR Selector </title>
-    <link rel="stylesheet" type="text/css" href="css/SelectorControl.css">
+    <link rel="stylesheet" type="text/css" href="css/ccDmrSelector.css">
     
     <!-- include external libraries here... -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     
     <!-- include internal libraries here... -->
-    <script src="script/DMRselector.js" type="text/javascript"></script>
+    <script src="script/ccDmrSelector.js" type="text/javascript"></script>
+	
     
     <script type="text/javascript">
         $(function () {
-            $("#Sample1").DMRselector({
+            $("#Sample1").ccDmrSelector({
                 dns_name: "Default",
                 Icon_Path: "images/Icons/",
                 dmr_list: [
@@ -42,11 +43,34 @@
                 Title: "Select DMR",                                            
                 EmptyMessage: "There are no DMR associations for this content Provider", // this error message displays on supplying the widget with no dmr list                     
                 EmptySearchMessage: "No Elements to display",                            // this error message pops up on finding no element that fits the search criteria       
-                PageNationLimit: 2                                                       // this is paginatiion limit
+                PageNationLimit: 4                                                       // this is paginatiion limit
+            });
+            
+            $("#Sample2").ccDmrSelector({
+                dns_name: "Default2",
+                Icon_Path: "images/Icons/",
+                dmr_list: [
+                {
+                    account_name: "iTunes",
+                    logo_id: "1"
+                },
+                {
+                    account_name: "Lionsgate",
+                    logo_id: "4"
+                },
+                {
+                    account_name: "NetFlix",
+                    logo_id: "5"
+                }
+                ],
+                Title: "Select DMR sample-2",                                            
+                EmptyMessage: "There are no DMR associations for this content Provider", 
+                EmptySearchMessage: "No Elements to display",   
+                PageNationLimit: 2                              
             });
         });
 
-        DMR_Selector_Clicked = function (ElementClicked) { alert(ElementClicked + " was selected, Define callback if required here"); };
+        ccDmrSelector_Clicked = function (ElementClicked) { alert(ElementClicked + " was selected, Define callback if required here"); };
 
     </script>
 	<style>
@@ -55,6 +79,8 @@
 </head>
 <body>
     <div id= "Sample1">
+    </div>
+    <div id= "Sample2">
     </div>
 </body>
 </html>

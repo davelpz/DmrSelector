@@ -1,142 +1,130 @@
-﻿window.DMRselector = class DMRselector
+﻿window.ccDmrSelector = class ccDmrSelector
 	_create: -> 
 		
-		SinglePanelBase = ($ '<div/>').attr(id : "SinglePanelBase")  
-									  .addClass(@css.SinglePanelBase)
-									  .append(($ '<div/>').addClass(@css.IconContainer).append($ '<img/>'))
-									  .append(($ '<label/>').addClass(@css.LogoName))
-									  .append(($ '<div/>').html('&#9662;').addClass(@css.SinglePanelArrowBase))
-		
-		OptionsContainer = ($ '<div/>').attr(id : "OptionsContainer")  
-									   .addClass(@css.OptionsContainer)									   
+		SinglePanelBase = ($ '<div/>').addClass(@css.SinglePanelBase)
+                                  .append(($ '<div/>').addClass(@css.IconContainer).append($ '<img/>'))
+                                  .append(($ '<label/>').addClass(@css.LogoName))
+                                  .append(($ '<div/>').html('&#9662;').addClass(@css.SinglePanelArrowBase))
+                  
+		OptionsContainer = ($ '<div/>').addClass(@css.OptionsContainer)									   
 		
 		if @options.dmr_list.length == 0		
 		
 			Empty =  ($ '<div/>').attr(id : "NoElements")
-								 .text(@options.EmptyMessage)	
-								 .addClass(@css.Erroressage)
+                           .text(@options.EmptyMessage)	
+                           .addClass(@css.Erroressage)
 		
 			OptionsContainer.append(Empty)						
 					
 		else
 			
-			OptionsList = ($ '<table/>').attr(id : "OptionsList")
-										.attr(cellpadding : "0")
-										.attr(cellspacing : "0")
-										.attr(width : "100%")  
+			OptionsList = ($ '<table/>').attr(cellpadding : "0")
+                                  .attr(cellspacing : "0")
+                                  .attr(width : "100%")  
 										
 								  
 			OptionsContainer.append(OptionsList)						
 		
-			for element in @options.dmr_list
-				tempImg =($ '<td/>').attr(id : @options.dmr_list[_i].account_name + "_image" )			
-									.addClass(@css.ElementImage)
-									.append( ($ '<img/>').attr( "src", @options.Icon_Path + @options.dmr_list[_i].logo_id + ".png" ))
+			for element,i in @options.dmr_list
+				tempImg =($ '<td/>').attr(id : @options.dmr_list[i].account_name + "_image" )			
+                            .addClass(@css.ElementImage)
+                            .append( ($ '<img/>').attr( "src", @options.Icon_Path + @options.dmr_list[i].logo_id + ".png" ))
 				
-				tempText =($ '<td/>').attr(id : @options.dmr_list[_i].account_name + "_text" )			
-									 .addClass(@css.ElementText)
-									 .append( ($ '<p/>').text( @options.dmr_list[_i].account_name ))
+				tempText =($ '<td/>').attr(id : @options.dmr_list[i].account_name + "_text" )			
+                             .addClass(@css.ElementText)
+                             .append( ($ '<p/>').text( @options.dmr_list[i].account_name ))
 				
-				tempDiv =($ '<tr/>').attr(id : "row_" + @options.dmr_list[_i].account_name.toUpperCase() )			
-									 .attr(title : @options.dmr_list[_i].account_name  )			
-									 .attr(name : _i+1)			
-									 .addClass(@css.Row)
-									 .addClass("Page"+ Math.ceil((_i+1)/@options.PageNationLimit))
-									 .append(tempImg)
-									 .append(tempText)
-									 .attr(style: "display:none")
+				tempDiv = ($ '<tr/>').attr(id : "row_" + @options.dmr_list[i].account_name.toUpperCase() )			
+                             .attr(title : @options.dmr_list[i].account_name  )			
+                             .attr(name : i+1)			
+                             .addClass(@css.Row)
+                             .addClass("Page"+ Math.ceil((i+1)/@options.PageNationLimit))
+                             .append(tempImg)
+                             .append(tempText)
+                             .attr(style: "display:none")
 						
 				OptionsList.append(tempDiv)
 		
 			NoElements = ($ '<div/>').attr(id : "NoElement" )
-									 .attr(style: "display:none")
-									 .addClass(@css.Erroressage)
-									 .text( @options.EmptySearchMessage )
-									 
+                               .attr(style: "display:none")
+                               .addClass(@css.Erroressage)
+                               .text( @options.EmptySearchMessage )
+                               
 			OptionsList.append(NoElements)
 		
-			ArrowPrevious = ($ '<div/>').attr(id : "ArrowPrevious")  
-									    .html('&#9664;')
-									    .addClass(@css.ArrowPrevious)
+			ArrowPrevious = ($ '<div/>').html('&#9664;')
+                                .addClass(@css.ArrowPrevious)
 			
-			ArrowNext = ($ '<div/>').attr(id : "ArrowNext")
-									.html('&#9654;')
-								    .addClass(@css.ArrowNext)
+			ArrowNext = ($ '<div/>').html('&#9654;')
+                              .addClass(@css.ArrowNext)
 			
 			PageIndex = ($ '<input/>').attr(id : "PageIndex")  
-									  .attr(type : "text")
-									  .attr(style: "width:20px")
-									  .val('1')
+                                .attr(type : "text")
+                                .attr(style: "width:20px")
+                                .val('1')
+                    
+			TotalPages = ($ '<label/>').text( Math.ceil(i/@options.PageNationLimit) )	
+                                 .addClass(@css.Label)
 			
-			TotalPages = ($ '<label/>').text( Math.ceil(_i/@options.PageNationLimit) )	
-									   .addClass(@css.Label)
+			Pagination =($ '<div/>').addClass(@css.Pagination)
+                              .append(($ '<label/>').text("Page "))
+                              .append(PageIndex)
+                              .append(($ '<label/>').text(" of "))
+                              .append(TotalPages)
+                             
 			
-			Pagination = ($ '<div/>').attr(id : "Pagniation")  
-								    .addClass(@css.Pagination)
-									.append(($ '<label/>').text("Page "))
-									.append(PageIndex)
-									.append(($ '<label/>').text(" of "))
-									.append(TotalPages)
-								 
+			PageContainer = ($ '<div/>').addClass(@css.PageContainer)
+                                  .append(ArrowPrevious)
+                                  .append(Pagination)
+                                  .append(ArrowNext)
+                                  .attr(style: "display : none")
+                    
+			SearchInputBox = ($ '<input/>').attr(type : "text")
+                                     .addClass(@css.SearchInputBox)
+                                     .addClass(@css.input)										   
 			
-			PageContainer = ($ '<div/>').attr(id : "PageContainer")  
-										.addClass(@css.PageContainer)
-										.append(ArrowPrevious)
-										.append(Pagination)
-										.append(ArrowNext)
-										.attr(style: "display : none")
-			
-			SearchInputBox = ($ '<input/>').attr(id : "SearchInputBox")  
-										   .attr(type : "text")
-										   .addClass(@css.SearchInputBox)
-										   .addClass(@css.input)										   
-			
-			SearchIcon =($ '<div/>').attr(id : "SearchIcon")  
-									.addClass(@css.SearchIcon)					 
+			SearchIcon =($ '<div/>').addClass(@css.SearchIcon)					 
 								 
 			SearchBox =	($ '<div/>').addClass(@css.SearchBox)
-									.append(SearchInputBox)
-									.append(SearchIcon)
+                              .append(SearchInputBox)
+                              .append(SearchIcon)
 		 
-			if _i > @options.PageNationLimit 
+			if i > @options.PageNationLimit 
 				PageContainer.attr(style : "visibility : visible")
 				SearchBox.attr(style: "width : 63% ; margin-right :10px")
 				
 		CancelLink = ($ '<input/>').attr( id: "cancelButton"  ,type : "Submit", value : "Cancel")
-								   .addClass(@css.Button)
+                               .addClass(@css.Button)
 									 
 		ClearLink = ($ '<input/>').attr(id: "clearButton" ,type : "Submit", value : "Clear")
-								  .addClass(@css.Button)
+                              .addClass(@css.Button)
 		
-		ButtonHolder = ($ '<div/>').attr(id : "ButtonHolder")  
-								   .addClass(@css.ButtonHolder)
-								   .append(ClearLink)
-								   .append(CancelLink)
-				
+		ButtonHolder = ($ '<div/>').addClass(@css.ButtonHolder)
+                               .append(ClearLink)
+                               .append(CancelLink)
+                    
 		Wrapper = ($ '<div/>').append(SearchBox)
-							  .append(PageContainer)
-							  .append(OptionsContainer)
-							  .append(ButtonHolder)
+                          .append(PageContainer)
+                          .append(OptionsContainer)
+                          .append(ButtonHolder)
 			
 		PopupContainer = ($ '<div/>').addClass(@css.PopupContainer)								  	 
-									 .append(Wrapper)
+                                 .append(Wrapper)
 										
 										
 		
-		Title = ($ '<div/>').attr(id : "title")
-						    .text(@options.Title)
-						    .addClass(@css.Title)					 
+		Title = ($ '<div/>').text(@options.Title)
+                        .addClass(@css.Title)					 
 		
-		SelectorContainer = ($ '<div/>').attr(id : "SelectorPanel")  
-										.attr(style: "display:none")
-										.addClass(@css.PopupPanelBase)
-										.append(Title)
-										.append(PopupContainer)
-			
+		SelectorContainer = ($ '<div/>').attr(style: "display:none")
+                                    .addClass(@css.PopupPanelBase)
+                                    .append(Title)
+                                    .append(PopupContainer)
+                      
 		($ @element).addClass(@css.SelectorWrapper)
-					.attr(id : @options.dns_name)  
-					.append(SinglePanelBase)
-					.append(SelectorContainer)
+                .attr(id : @options.dns_name)  
+                .append(SinglePanelBase)
+                .append(SelectorContainer)
 					
 		($ @element).find(".Page1").attr(style: "display:block")		
 		
@@ -234,7 +222,7 @@
 		PageNationLimit: 10
 		
 	css:
-		SelectorWrapper: 'ccDmrPopup',
+		SelectorWrapper: 'ccDmrSelector',
 		OptionsContainer: 'itempanel',
 		Row: 'row',
 		Erroressage: 'msg',
@@ -261,7 +249,8 @@
 		SelectedRow: 'selectedRow' 
 
 			
-$.widget "vdms.DMRselector", new DMRselector
+$.widget "vdms.ccDmrSelector", new ccDmrSelector
 
 elementClicked = (Elementid) ->
-	DMR_Selector_Clicked(Elementid)
+	ccDmrSelector_Clicked(Elementid)
+

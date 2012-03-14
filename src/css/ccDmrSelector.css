@@ -1,4 +1,4 @@
-.pagination-arrowbase {
+.ccDmrSelector .pagination-arrowbase {
   cursor: pointer;
   width: 21px;
   height: 18px;
@@ -10,18 +10,18 @@
   text-align: center;
 }
 /* Default */
-.left {
+.ccDmrSelector .left {
   float: left;
   text-align: left;
 }
-.right {
+.ccDmrSelector .right {
   float: right;
   text-align: left;
 }
-.clear {
+.ccDmrSelector .clear {
   clear: both;
 }
-.singlepanelbase {
+.ccDmrSelector .singlepanelbase {
   text-align: left;
   margin: 0 auto;
   width: 450px;
@@ -38,7 +38,7 @@
   -moz-box-shadow: 2px 2px 3px 0px #999999;
   box-shadow: 2px 2px 3px 0px #999999;
 }
-.singlepanelarrowbase {
+.ccDmrSelector .singlepanelarrowbase {
   float: right;
   text-align: center;
   margin: 0 auto;
@@ -54,14 +54,14 @@
   border-radius: 0px 5px 5px 0px;
 }
 
-.singlepanelbase .icn-container {
+.ccDmrSelector .singlepanelbase .icn-container {
   float: left;
   width: 60px;
   height: 60px;
   margin: 5px;
   background-color: #fff;
 }
-.popuppanelbase {
+.ccDmrSelector .popuppanelbase {
   text-align: left;
   margin: 0 auto;
   width: 436px;
@@ -76,11 +76,11 @@
   -moz-box-shadow: 0px 0px 2px 2px #cccccc;
   box-shadow: 0px 0px 2px 2px #cccccc;  
 }
-.popuppanelbase .title {
+.ccDmrSelector .popuppanelbase .title {
   font-size: 16px;
   padding: 5px 0px 8px 2px;
 }
-.whitepanel {
+.ccDmrSelector .whitepanel {
   text-align: left;
   margin: 0 auto;
   width: 414px;
@@ -93,7 +93,7 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.itempanel {
+.ccDmrSelector .itempanel {
   text-align: left;
   margin: 0 auto;
   width: 412px;
@@ -110,14 +110,14 @@
   box-shadow: 0px 2px 2px 0px #cccccc;
   clear:both;
 }
-.itempanel .msg {
+.ccDmrSelector .itempanel .msg {
   font-size: 12px;
   width: 100%;
   text-align: center;
   margin: auto 0;
   padding-top: 25px;
 }
-.itempanel .icn-container {
+.ccDmrSelector .itempanel .icn-container {
   width: 61px;
   height: 60px;
   padding: 5px 5px 2px 5px;
@@ -125,21 +125,21 @@
   z-index: 100;
   border-bottom: 1px solid #999;
 }
-.itempanel .icn-name {
+.ccDmrSelector .itempanel .icn-name {
   padding-left: 20px;
   border-bottom: 1px solid #999;
   width:100%;
 }
-.itempanel .separator {
+.ccDmrSelector .itempanel .separator {
   background-color: #ccc;
   height: 1px;
 }
-.btn-container-right {
+.ccDmrSelector .btn-container-right {
   clear: both;
   text-align: right;
   padding: 10px 0 0 0;
 }
-.btn {
+.ccDmrSelector .btn {
   cursor: pointer;
   height: 25px;
   border: 0px;
@@ -163,14 +163,14 @@
   -moz-box-shadow: 2px 2px 0px 0px #d3d3d3;
   box-shadow: 2px 2px 0px 0px #d3d3d3;
 }
-.search-container-full {
+.ccDmrSelector .search-container-full {
   width: 414px;
 }
-.search-container-half {
+.ccDmrSelector .search-container-half {
   width: 260px;
   float: left;
 }
-.searchbox {
+.ccDmrSelector .searchbox {
   font-size: 12px;
   height: 25px;
   width: 100%;
@@ -181,7 +181,7 @@
   border-radius: 5px;
   float:left;
 }
-.searchfield {
+.ccDmrSelector .searchfield {
   width: 80%;
   border: 0;
   background: #ebebeb;
@@ -190,8 +190,8 @@
   text-indent: 10px;
   margin-top: 5px;
 }
-.icn-search {  
-	background: url("../Images/icn_search.png") no-repeat;
+.ccDmrSelector .icn-search {  
+	background: url("../Images/ccDmrSelector_icn_search.png") no-repeat;
 	cursor: pointer;
 	float: right;
 	height: 21px;
@@ -200,7 +200,7 @@
 	width: 22px;
 	padding:3px 5px 0 0;
 }
-.pagination-container {
+.ccDmrSelector .pagination-container {
   font-size: 12px;
   height: 21px;
   width: 136px;
@@ -211,7 +211,7 @@
   border-radius: 5px;
   float:left;
 }
-.arrow-prev {
+.ccDmrSelector .arrow-prev {
   float: left;
   cursor: pointer;
   width: 21px;
@@ -233,7 +233,7 @@
   border-radius: 3px;
   line-height:15px;
 }
-.arrow-next {
+.ccDmrSelector .arrow-next {
   float: right;
   cursor: pointer;
   width: 21px;
@@ -255,15 +255,15 @@
   border-radius: 3px;
   line-height:15px;
 }
-.pagination {
+.ccDmrSelector .pagination {
   float: left;
   padding-left: 7px;
 }
-.ccDmrPopup{width:450px;margin:0 auto;margin-top:30px;}
+.ccDmrSelector{width:450px;margin:0 auto;margin-top:30px;}
 
-.row:hover {
+.ccDmrSelector .row:hover {
     background: none repeat scroll 0 0 #caeaf7 !important;
     cursor: default;
 }
-.LogoName{margin:30px 0 0 10px;float:left;font-weight:bold;}
-.selectedRow{background-color:#caeaf7;}
+.ccDmrSelector .LogoName{margin:30px 0 0 10px;float:left;font-weight:bold;}
+.ccDmrSelector .selectedRow{background-color:#caeaf7;}

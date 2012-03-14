@@ -1,18 +1,14 @@
 ﻿(function () {
-    var DMRselector, elementClicked;
+    var ccDmrSelector, elementClicked;
 
-window.DMRselector = DMRselector = (function() {
+window.ccDmrSelector = ccDmrSelector = (function() {
 
-  function DMRselector() {}
+  function ccDmrSelector() {}
 
-  DMRselector.prototype._create = function() {
-    var ArrowNext, ArrowPrevious, ButtonHolder, CancelLink, ClearLink, Empty, NoElements, OptionsContainer, OptionsList, PageContainer, PageIndex, Pagination, PopupContainer, SearchBox, SearchIcon, SearchInputBox, SelectorContainer, SinglePanelBase, Title, TotalPages, Wrapper, element, tempDiv, tempImg, tempText, _i, _len, _ref;
-    SinglePanelBase = ($('<div/>')).attr({
-      id: "SinglePanelBase"
-    }).addClass(this.css.SinglePanelBase).append(($('<div/>')).addClass(this.css.IconContainer).append($('<img/>'))).append(($('<label/>')).addClass(this.css.LogoName)).append(($('<div/>')).html('&#9662;').addClass(this.css.SinglePanelArrowBase));
-    OptionsContainer = ($('<div/>')).attr({
-      id: "OptionsContainer"
-    }).addClass(this.css.OptionsContainer);
+  ccDmrSelector.prototype._create = function() {
+    var ArrowNext, ArrowPrevious, ButtonHolder, CancelLink, ClearLink, Empty, NoElements, OptionsContainer, OptionsList, PageContainer, PageIndex, Pagination, PopupContainer, SearchBox, SearchIcon, SearchInputBox, SelectorContainer, SinglePanelBase, Title, TotalPages, Wrapper, element, i, tempDiv, tempImg, tempText, _len, _ref;
+    SinglePanelBase = ($('<div/>')).addClass(this.css.SinglePanelBase).append(($('<div/>')).addClass(this.css.IconContainer).append($('<img/>'))).append(($('<label/>')).addClass(this.css.LogoName)).append(($('<div/>')).html('&#9662;').addClass(this.css.SinglePanelArrowBase));
+    OptionsContainer = ($('<div/>')).addClass(this.css.OptionsContainer);
     if (this.options.dmr_list.length === 0) {
       Empty = ($('<div/>')).attr({
         id: "NoElements"
@@ -20,8 +16,6 @@ window.DMRselector = DMRselector = (function() {
       OptionsContainer.append(Empty);
     } else {
       OptionsList = ($('<table/>')).attr({
-        id: "OptionsList"
-      }).attr({
         cellpadding: "0"
       }).attr({
         cellspacing: "0"
@@ -30,21 +24,21 @@ window.DMRselector = DMRselector = (function() {
       });
       OptionsContainer.append(OptionsList);
       _ref = this.options.dmr_list;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        element = _ref[_i];
+      for (i = 0, _len = _ref.length; i < _len; i++) {
+        element = _ref[i];
         tempImg = ($('<td/>')).attr({
-          id: this.options.dmr_list[_i].account_name + "_image"
-        }).addClass(this.css.ElementImage).append(($('<img/>')).attr("src", this.options.Icon_Path + this.options.dmr_list[_i].logo_id + ".png"));
+          id: this.options.dmr_list[i].account_name + "_image"
+        }).addClass(this.css.ElementImage).append(($('<img/>')).attr("src", this.options.Icon_Path + this.options.dmr_list[i].logo_id + ".png"));
         tempText = ($('<td/>')).attr({
-          id: this.options.dmr_list[_i].account_name + "_text"
-        }).addClass(this.css.ElementText).append(($('<p/>')).text(this.options.dmr_list[_i].account_name));
+          id: this.options.dmr_list[i].account_name + "_text"
+        }).addClass(this.css.ElementText).append(($('<p/>')).text(this.options.dmr_list[i].account_name));
         tempDiv = ($('<tr/>')).attr({
-          id: "row_" + this.options.dmr_list[_i].account_name.toUpperCase()
+          id: "row_" + this.options.dmr_list[i].account_name.toUpperCase()
         }).attr({
-          title: this.options.dmr_list[_i].account_name
+          title: this.options.dmr_list[i].account_name
         }).attr({
-          name: _i + 1
-        }).addClass(this.css.Row).addClass("Page" + Math.ceil((_i + 1) / this.options.PageNationLimit)).append(tempImg).append(tempText).attr({
+          name: i + 1
+        }).addClass(this.css.Row).addClass("Page" + Math.ceil((i + 1) / this.options.PageNationLimit)).append(tempImg).append(tempText).attr({
           style: "display:none"
         });
         OptionsList.append(tempDiv);
@@ -55,12 +49,8 @@ window.DMRselector = DMRselector = (function() {
         style: "display:none"
       }).addClass(this.css.Erroressage).text(this.options.EmptySearchMessage);
       OptionsList.append(NoElements);
-      ArrowPrevious = ($('<div/>')).attr({
-        id: "ArrowPrevious"
-      }).html('&#9664;').addClass(this.css.ArrowPrevious);
-      ArrowNext = ($('<div/>')).attr({
-        id: "ArrowNext"
-      }).html('&#9654;').addClass(this.css.ArrowNext);
+      ArrowPrevious = ($('<div/>')).html('&#9664;').addClass(this.css.ArrowPrevious);
+      ArrowNext = ($('<div/>')).html('&#9654;').addClass(this.css.ArrowNext);
       PageIndex = ($('<input/>')).attr({
         id: "PageIndex"
       }).attr({
@@ -68,25 +58,17 @@ window.DMRselector = DMRselector = (function() {
       }).attr({
         style: "width:20px"
       }).val('1');
-      TotalPages = ($('<label/>')).text(Math.ceil(_i / this.options.PageNationLimit)).addClass(this.css.Label);
-      Pagination = ($('<div/>')).attr({
-        id: "Pagniation"
-      }).addClass(this.css.Pagination).append(($('<label/>')).text("Page ")).append(PageIndex).append(($('<label/>')).text(" of ")).append(TotalPages);
-      PageContainer = ($('<div/>')).attr({
-        id: "PageContainer"
-      }).addClass(this.css.PageContainer).append(ArrowPrevious).append(Pagination).append(ArrowNext).attr({
+      TotalPages = ($('<label/>')).text(Math.ceil(i / this.options.PageNationLimit)).addClass(this.css.Label);
+      Pagination = ($('<div/>')).addClass(this.css.Pagination).append(($('<label/>')).text("Page ")).append(PageIndex).append(($('<label/>')).text(" of ")).append(TotalPages);
+      PageContainer = ($('<div/>')).addClass(this.css.PageContainer).append(ArrowPrevious).append(Pagination).append(ArrowNext).attr({
         style: "display : none"
       });
       SearchInputBox = ($('<input/>')).attr({
-        id: "SearchInputBox"
-      }).attr({
         type: "text"
       }).addClass(this.css.SearchInputBox).addClass(this.css.input);
-      SearchIcon = ($('<div/>')).attr({
-        id: "SearchIcon"
-      }).addClass(this.css.SearchIcon);
+      SearchIcon = ($('<div/>')).addClass(this.css.SearchIcon);
       SearchBox = ($('<div/>')).addClass(this.css.SearchBox).append(SearchInputBox).append(SearchIcon);
-      if (_i > this.options.PageNationLimit) {
+      if (i > this.options.PageNationLimit) {
         PageContainer.attr({
           style: "visibility : visible"
         });
@@ -105,17 +87,11 @@ window.DMRselector = DMRselector = (function() {
       type: "Submit",
       value: "Clear"
     }).addClass(this.css.Button);
-    ButtonHolder = ($('<div/>')).attr({
-      id: "ButtonHolder"
-    }).addClass(this.css.ButtonHolder).append(ClearLink).append(CancelLink);
+    ButtonHolder = ($('<div/>')).addClass(this.css.ButtonHolder).append(ClearLink).append(CancelLink);
     Wrapper = ($('<div/>')).append(SearchBox).append(PageContainer).append(OptionsContainer).append(ButtonHolder);
     PopupContainer = ($('<div/>')).addClass(this.css.PopupContainer).append(Wrapper);
-    Title = ($('<div/>')).attr({
-      id: "title"
-    }).text(this.options.Title).addClass(this.css.Title);
+    Title = ($('<div/>')).text(this.options.Title).addClass(this.css.Title);
     SelectorContainer = ($('<div/>')).attr({
-      id: "SelectorPanel"
-    }).attr({
       style: "display:none"
     }).addClass(this.css.PopupPanelBase).append(Title).append(PopupContainer);
     ($(this.element)).addClass(this.css.SelectorWrapper).attr({
@@ -126,7 +102,7 @@ window.DMRselector = DMRselector = (function() {
     });
   };
 
-  DMRselector.prototype._init = function() {
+  ccDmrSelector.prototype._init = function() {
     var element, me;
     me = this;
     element = $(this.element);
@@ -179,7 +155,7 @@ window.DMRselector = DMRselector = (function() {
     });
   };
 
-  DMRselector.prototype.SwitchtoPanel = function(Selected, Cleared) {
+  ccDmrSelector.prototype.SwitchtoPanel = function(Selected, Cleared) {
     if (Cleared === 1) {
       ($(this.element)).find('.' + this.css.SelectedRow).removeClass(this.css.SelectedRow);
       this.options.Default = 0;
@@ -206,7 +182,7 @@ window.DMRselector = DMRselector = (function() {
     });
   };
 
-  DMRselector.prototype.SwitchtoSelector = function(Selected) {
+  ccDmrSelector.prototype.SwitchtoSelector = function(Selected) {
     ($(this.element)).find("#NoElement").attr({
       style: "display:none"
     });
@@ -225,7 +201,7 @@ window.DMRselector = DMRselector = (function() {
     });
   };
 
-  DMRselector.prototype.Search = function(SearchWord) {
+  ccDmrSelector.prototype.Search = function(SearchWord) {
     ($(this.element)).find('tr[id^="row_"]').attr({
       style: "display:none"
     });
@@ -243,7 +219,7 @@ window.DMRselector = DMRselector = (function() {
     }
   };
 
-  DMRselector.prototype.AlphaNumericValidator = function(entry) {
+  ccDmrSelector.prototype.AlphaNumericValidator = function(entry) {
     if (isNaN(entry)) {
       return 0;
     } else {
@@ -251,7 +227,7 @@ window.DMRselector = DMRselector = (function() {
     }
   };
 
-  DMRselector.prototype.PageChange = function(PresentPage, TotalPages, UpDown) {
+  ccDmrSelector.prototype.PageChange = function(PresentPage, TotalPages, UpDown) {
     ($(this.element)).find("#NoElement").attr({
       style: "display:none"
     });
@@ -273,7 +249,7 @@ window.DMRselector = DMRselector = (function() {
     }
   };
 
-  DMRselector.prototype.options = {
+  ccDmrSelector.prototype.options = {
     dns_name: "Default",
     dmr_list: [],
     Icon_Path: "images/Icons/",
@@ -284,8 +260,8 @@ window.DMRselector = DMRselector = (function() {
     PageNationLimit: 10
   };
 
-  DMRselector.prototype.css = {
-    SelectorWrapper: 'ccDmrPopup',
+  ccDmrSelector.prototype.css = {
+    SelectorWrapper: 'ccDmrSelector',
     OptionsContainer: 'itempanel',
     Row: 'row',
     Erroressage: 'msg',
@@ -312,14 +288,14 @@ window.DMRselector = DMRselector = (function() {
     SelectedRow: 'selectedRow'
   };
 
-  return DMRselector;
+  return ccDmrSelector;
 
 })();
 
-$.widget("vdms.DMRselector", new DMRselector);
+$.widget("vdms.ccDmrSelector", new ccDmrSelector);
 
 elementClicked = function(Elementid) {
-  return DMR_Selector_Clicked(Elementid);
+  return ccDmrSelector_Clicked(Elementid);
 };
 }).call(this);
 
