@@ -249,7 +249,8 @@
 		SelectedRow: 'selectedRow' 
 
 			
-$.widget "vdms.ccDmrSelector", new ccDmrSelector
+$.widget "cc.ccDmrSelector", new ccDmrSelector 
+
 
 elementClicked = (Elementid) ->
 	ccDmrSelector_Clicked(Elementid)

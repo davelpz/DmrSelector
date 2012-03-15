@@ -292,7 +292,7 @@ window.ccDmrSelector = ccDmrSelector = (function() {
 
 })();
 
-$.widget("vdms.ccDmrSelector", new ccDmrSelector);
+$.widget("cc.ccDmrSelector", new ccDmrSelector);
 
 elementClicked = function(Elementid) {
   return ccDmrSelector_Clicked(Elementid);
