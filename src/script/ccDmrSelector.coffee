@@ -35,7 +35,7 @@
                              .append( ($ '<p/>').text( @options.dmr_list[i].account_name ))
 				
 				tempDiv = ($ '<tr/>').attr(id : "row_" + @options.dmr_list[i].account_name.toUpperCase() )			
-                             .attr(title : @options.dmr_list[i].account_name  )			
+                             .attr(title : @options.dmr_list[i].account_name.toUpperCase()  )			
                              .attr(name : i+1)			
                              .addClass(@css.Row)
                              .addClass("Page"+ Math.ceil((i+1)/@options.PageNationLimit))
@@ -80,8 +80,8 @@
                                   .attr(style: "display : none")
                     
 			SearchInputBox = ($ '<input/>').attr(type : "text")
-                                     .addClass(@css.SearchInputBox)
-                                     .addClass(@css.input)										   
+										   .addClass(@css.SearchInputBox)
+										   .addClass(@css.input)										   
 			
 			SearchIcon =($ '<div/>').addClass(@css.SearchIcon)					 
 								 
@@ -133,7 +133,8 @@
 		element = ($ @element)
 		element.find('.' + @css.SinglePanelArrowBase).click (event)  ->
 			me.SwitchtoSelector(me.options.Default)
-				
+			($ me.element).find('.' + me.css.SearchInputBox )[0].value = ''
+			
 		element.find('.' + @css.ArrowNext).click (event)  ->
 			if me.PageChange( parseInt( this.parentNode.childNodes[1].childNodes[1].value) ,parseInt(this.parentNode.childNodes[1].childNodes[3].innerHTML), 1) then this.parentNode.childNodes[1].childNodes[1].value++
 			
@@ -154,13 +155,13 @@
 			me.SwitchtoPanel(me.options.Default , 0)
 			
 		element.find('.' +@css.SearchInputBox).change (event) ->
-			me.Search(this.value.toUpperCase())
-			this.value=''
-			
+			if this.value!='' then me.Search(this.value.toUpperCase())
+			else me.SwitchtoSelector(me.options.Default)
+				
 		element.find('.' +@css.SearchIcon).change (event) ->
-			me.Search(this.previousSibling.value.toUpperCase())
-			this.value=''
-		
+			if this.value!='' then me.Search(this.previousSibling.value.toUpperCase())
+			else me.SwitchtoSelector(me.options.Default)
+			
 		element.find('#PageIndex').change (event) ->
 			if me.AlphaNumericValidator(this.value) and parseInt(this.value) <= parseInt(this.nextSibling.nextSibling.innerHTML) and parseInt(this.value) > 0   
 				($ me.element).find('tr[id^="row_"]').attr(style: "display:none")
@@ -194,10 +195,10 @@
 	
 	Search: (SearchWord) ->
 		($ @element).find('tr[id^="row_"]').attr(style: "display:none")
-		if ($ @element).find('tr[id^="row_'+SearchWord+'"]').length == 0 then ($ @element).find("#NoElement").attr(style: "display:block")
+		if ($ @element[0].children[1].children[1].children[0].children[2].children[0]).find('tr[title*="'+SearchWord+'"]').length == 0 then ($ @element).find("#NoElement").attr(style: "display:block")
 		else
 			($ @element).find("#NoElement").attr(style: "display:none")	
-			($ @element).find('tr[id^="row_'+SearchWord+'"]').attr(style: "display:block")
+			($ @element[0].children[1].children[1].children[0].children[2].children[0]).find('tr[title*="'+SearchWord+'"]').attr(style: "display:block")
 	
 	AlphaNumericValidator: (entry) ->
 		if isNaN entry then	return 0 else return 1 
